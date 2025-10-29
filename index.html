@@ -3,57 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DevOps Pipeline Success!</title>
-    <!-- Load Tailwind CSS -->
+    <title>DevOps Pipeline Success - New Look!</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Optional: Use Inter font for a modern look */
-        body { font-family: 'Inter', sans-serif; }
+        /* Modern Gradient Background */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e0e7ff 100%); /* Light Blue/Gray Gradient */
+        }
+        /* Custom Keyframe for a subtle animation on load */
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .animate-on-load {
+            animation: fadeInScale 0.7s ease-out forwards;
+        }
     </style>
 </head>
-<body class="bg-gray-50 flex items-center justify-center min-h-screen p-4">
+<body class="flex items-center justify-center min-h-screen p-4">
 
-    <!-- Main Content Card -->
-    <div class="max-w-xl w-full bg-white rounded-xl shadow-2xl p-8 md:p-12 text-center transform transition duration-500 hover:scale-[1.02]">
+    <div class="max-w-xl w-full bg-white rounded-3xl border border-gray-100 shadow-3xl p-8 md:p-12 text-center transform transition duration-500 hover:shadow-4xl animate-on-load">
 
-        <!-- Header -->
         <div class="mb-8">
-            <svg class="w-16 h-16 mx-auto text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4">CI/CD Deployment Successful!</h1>
+            <svg class="w-16 h-16 mx-auto text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mt-4">New Content Deployed!</h1>
         </div>
 
-        <!-- Message -->
-        <p class="text-xl text-gray-600 mb-8">
-            This content was automatically deployed to S3 via an **AWS CodePipeline** trigger from a GitHub commit.
-            The pipeline is fully operational.
+        <p class="text-xl text-gray-700 mb-8 font-light">
+            You're seeing the **updated version!** This proves your **AWS CodePipeline** successfully detected the change and deployed this new `index.html` to your S3 bucket.
         </p>
 
-        <!-- Dynamic Timestamp for Verification -->
-        <div class="bg-indigo-100 border-l-4 border-indigo-500 text-indigo-800 p-4 rounded-lg" role="alert">
-            <p class="font-bold text-lg mb-1">Deployment Timestamp</p>
+        <div class="bg-violet-50 border-t-4 border-violet-500 text-violet-800 p-4 rounded-b-lg rounded-t-xl shadow-inner" role="alert">
+            <p class="font-bold text-lg mb-1">Deployment Verification Timestamp</p>
             <p class="text-sm">
-                Last updated and deployed at:
-                <span id="deploymentTime" class="font-mono text-base text-indigo-900">Loading...</span>
+                Last updated on this page at:
+                <span id="deploymentTime" class="font-mono text-base text-violet-900 font-semibold">Loading...</span>
             </p>
         </div>
 
-        <!-- Footer / Call to Action -->
         <div class="mt-8">
-            <a href="https://aws.amazon.com/codepipeline/" target="_blank" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150">
-                View AWS CodePipeline Docs &rarr;
+            <a href="https://aws.amazon.com/codepipeline/" target="_blank" class="inline-flex items-center justify-center px-8 py-3 border-4 border-transparent text-base font-bold rounded-full text-white bg-sky-600 hover:bg-sky-700 shadow-lg hover:shadow-xl transition duration-150 transform hover:-translate-y-0.5">
+                Check Your Pipeline Status &rarr;
             </a>
         </div>
     </div>
 
     <script>
         /**
-         * The primary purpose of this script is to confirm the latest deployment.
-         * Every time you commit code and the pipeline runs, this timestamp will update,
-         * letting you verify the new content is being served from S3.
+         * Updates the timestamp on the page to verify the time of deployment.
          */
         document.addEventListener('DOMContentLoaded', () => {
             const now = new Date();
-            const timeString = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            // Use 'en-US' locale for a clear, standard format
+            const timeString = now.toLocaleDateString('en-US') + ' at ' + now.toLocaleTimeString('en-US');
             document.getElementById('deploymentTime').textContent = timeString;
         });
     </script>
